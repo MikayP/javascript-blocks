@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
-wp.blocks.registerBlockType('plugin/test-block', {
+wp.blocks.registerBlockType('plugin/card-block', {
   title: "Test Title",
   icon: "smiley",
   category: "common",
@@ -109,13 +109,13 @@ wp.blocks.registerBlockType('plugin/test-block', {
     // 3rd is text you want in there
     // value needed to save on reload of admin
     // on change needed to see change of values in guttenberg
-    function updateSkyColor(event) {
+    function updateBackground(event) {
       props.setAttributes({
         skyColor: event.target.value
       });
     }
 
-    function updateGrassColor(event) {
+    function updateGrassColorr(event) {
       props.setAttributes({
         grassColor: event.target.value
       });
@@ -123,14 +123,63 @@ wp.blocks.registerBlockType('plugin/test-block', {
 
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
-      placeholder: "sky color",
-      value: props.attributes.skyColor,
-      onChange: updateSkyColor
+      placeholder: "skky color",
+      value: props.attributes.Background,
+      onChange: updateSkyColorr
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
-      placeholder: "grass color",
-      value: props.attributes.GrassColor,
-      onChange: updateGrassColor
+      placeholder: "graass color",
+      value: props.attributes.GrassColorr,
+      onChange: updateGrassColorr
+    }));
+  },
+  save: function (props) {
+    // seen live
+    // 3rd is text you want in there
+    return null;
+  }
+});
+wp.blocks.registerBlockType('plugin/background-card-block', {
+  title: "Background Card",
+  icon: "smiley",
+  category: "common",
+  attributes: {
+    Background: {
+      type: "string"
+    },
+    content: {
+      type: "string"
+    }
+  },
+  edit: function (props) {
+    // seen in admin
+    // type of html elements you want to create
+    // 2nd rule to describe element. such as adding a class or inline style, or null
+    // 3rd is text you want in there
+    // value needed to save on reload of admin
+    // on change needed to see change of values in guttenberg
+    function background_image(event) {
+      props.setAttributes({
+        Background: event.target.value
+      });
+    }
+
+    function content(event) {
+      props.setAttributes({
+        content: event.target.value
+      });
+    }
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      placeholder: "background url",
+      value: props.attributes.Background,
+      onChange: background_image
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      placeholder: "content",
+      value: props.attributes.content,
+      onChange: content
     }));
   },
   save: function (props) {
