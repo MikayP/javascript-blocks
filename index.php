@@ -27,20 +27,36 @@ class payAttention{
     }
     function card_block($variable){
         ob_start(); ?>
-        <p>TOday the sky is <?php if($variable['skyColor']) {echo  $variable['skyColor'];} else {echo 'nothing';} ?> and the grass is <?php echo $variable['grassColor'] ?></p>
-        <?php return ob_get_clean(); 
+<p>TOday the sky is <?php if($variable['skyColor']) {echo  $variable['skyColor'];} else {echo 'nothing';} ?> and the
+    grass is <?php echo $variable['grassColor'] ?></p>
+<?php return ob_get_clean(); 
     }
 
     function card_bg_block($variable){
         ob_start(); ?>
-        <div class="background-card-block" >
-        <div class="background-card-block_img  border-radius" style="background-image:url('<?php echo $variable['Background'] ?>')"></div>
+         <?php if ($variable['url'] ) { ?>
+           <a class="background-card-block_url" href="<?php echo ($variable['url'] )?>">
+         <?php } ?>
+<div class="background-card-block" data-aos="<?php echo $variable['animation'] ?>"
+    style="background-image:url('<?php echo $variable['Background'] ?>')">
+ 
+        <div class="background-card-block_img  border-radius"></div>
         <div class="background-card-block_content">
-        <?php echo $variable['content'] ?>
-        </div>
+            <?php echo $variable['content'] ?>
+         
+</div>
+<?php if ($variable['url'] ) { ?>
+            <div class="url-row">
+            <h4><?php echo ($variable['url_copy']) ?></h4>
+            </div>
     
-       </div>
-        <?php return ob_get_clean(); 
+            <?php } ?>
+</div>
+<?php if ($variable['url'] ) { ?>
+
+</a>
+<?php } ?>
+<?php return ob_get_clean(); 
     }
 }
 
