@@ -48,8 +48,9 @@ class payAttention{
 <?php if ($variable['url'] ) { ?>
             <div class="url-row">
             <h4><?php echo ($variable['url_copy']) ?></h4>
+      
             </div>
-    
+            <i class="fas fa-arrow-right"></i>
             <?php } ?>
 </div>
 <?php if ($variable['url'] ) { ?>
