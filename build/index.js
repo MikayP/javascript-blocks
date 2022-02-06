@@ -158,6 +158,10 @@ wp.blocks.registerBlockType('plugin/background-card-block', {
     },
     url_copy: {
       type: "string"
+    },
+    // background_light: {type: "string"},
+    background_checkbox: {
+      type: "boolean"
     }
   },
   edit: function (props) {
@@ -197,7 +201,17 @@ wp.blocks.registerBlockType('plugin/background-card-block', {
       });
     }
 
+    function background_checkbox(event) {
+      props.setAttributes({
+        background_checkbox: event.target.checked
+      });
+    }
+
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "checkbox",
+      checked: props.attributes.background_checkbox,
+      onChange: background_checkbox
+    }), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "light background?"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
       placeholder: "background url",
       value: props.attributes.Background,

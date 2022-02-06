@@ -46,7 +46,9 @@ wp.blocks.registerBlockType('plugin/background-card-block',{
         animation: { type: "string"},
         content: {type: "string"},
         url: {type: "string"},
-        url_copy: {type: "string"}
+        url_copy: {type: "string"},
+        // background_light: {type: "string"},
+        background_checkbox: {type: "boolean"}
     },
     edit: function(props){
         // seen in admin
@@ -70,12 +72,18 @@ wp.blocks.registerBlockType('plugin/background-card-block',{
         function url_copy(event){
             props.setAttributes({url_copy: event.target.value})
         }
+
+        function background_checkbox(event){
+            props.setAttributes({background_checkbox: event.target.checked})
+        }
+
         return (
 
             <div>
-                <input type="text" placeholder="background url" value={props.attributes.Background} onChange={background_image} />
-                <input type="text" placeholder="content" value={props.attributes.content} onChange={content} />
-                <input type="text" placeholder="animation" value={props.attributes.animation} onChange={animation} />
+                  <input type="checkbox" checked={props.attributes.background_checkbox} onChange={background_checkbox} /> <span>light background?</span>
+                  <input type="text" placeholder="background url" value={props.attributes.Background} onChange={background_image} />
+                 <input type="text" placeholder="content" value={props.attributes.content} onChange={content} />
+                 <input type="text" placeholder="animation" value={props.attributes.animation} onChange={animation} />
                  <input type="text" placeholder="url (optional)" value={props.attributes.url} onChange={url} />
                  <input type="text" placeholder="url_copy (optional)" value={props.attributes.url_copy} onChange={url_copy} />
         </div>

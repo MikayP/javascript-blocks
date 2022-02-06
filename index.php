@@ -33,11 +33,11 @@ class payAttention{
     }
 
     function card_bg_block($variable){
-        ob_start(); ?>
-         <?php if ($variable['url'] ) { ?>
-           <a class="background-card-block_url" href="<?php echo ($variable['url'] )?>">
+        ob_start();  ?>
+         <?php  if ($variable['url'] ) { ?>
+           <a class="background-card-block_url <?php echo $block['className'] ?>" href="<?php echo ($variable['url'] )?>">
          <?php } ?>
-<div class="background-card-block" data-aos="<?php echo $variable['animation'] ?>"
+         <div class="background-card-block <?php if ($variable['background_checkbox']) {?> background-card-block_light_bg <?php } ?> " data-aos="<?php echo $variable['animation'] ?>"
     style="background-image:url('<?php echo $variable['Background'] ?>')">
  
         <div class="background-card-block_img  border-radius"></div>
