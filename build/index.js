@@ -90,15 +90,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
-wp.blocks.registerBlockType('plugin/card-block', {
-  title: "Test Title",
-  icon: "smiley",
+wp.blocks.registerBlockType('plugin/block-close-box', {
+  title: "Close Box",
+  icon: "undo",
+  category: "common",
+  edit: function (props) {
+    // seen in admin
+    // type of html elements you want to create
+    // 2nd rule to describe element. such as adding a class or inline style, or null
+    // 3rd is text you want in there
+    // value needed to save on reload of admin
+    // on change needed to see change of values in guttenberg
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Close The Box"));
+  },
+  save: function (props) {
+    // seen live
+    // 3rd is text you want in there
+    return null;
+  }
+});
+wp.blocks.registerBlockType('plugin/top-card-bg', {
+  title: "Top Card Background",
+  icon: "format-gallery",
   category: "common",
   attributes: {
-    skyColor: {
+    top_card_bg: {
       type: "string"
     },
-    grassColor: {
+    animation: {
+      type: "string"
+    },
+    className: {
       type: "string"
     }
   },
@@ -109,28 +131,39 @@ wp.blocks.registerBlockType('plugin/card-block', {
     // 3rd is text you want in there
     // value needed to save on reload of admin
     // on change needed to see change of values in guttenberg
-    function updateBackground(event) {
+    function top_card_bg(event) {
       props.setAttributes({
-        skyColor: event.target.value
+        top_card_bg: event.target.value
       });
     }
 
-    function updateGrassColorr(event) {
+    function animation(event) {
       props.setAttributes({
-        grassColor: event.target.value
+        animation: event.target.value
+      });
+    }
+
+    function className(event) {
+      props.setAttributes({
+        className: event.target.value
       });
     }
 
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
-      placeholder: "skky color",
-      value: props.attributes.Background,
-      onChange: updateSkyColorr
+      placeholder: "background url",
+      value: props.attributes.top_card_bg,
+      onChange: top_card_bg
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
-      placeholder: "graass color",
-      value: props.attributes.GrassColorr,
-      onChange: updateGrassColorr
+      placeholder: "Animation",
+      value: props.attributes.animation,
+      onChange: animation
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      placeholder: "class name (optional)",
+      value: props.attributes.className,
+      onChange: className
     }));
   },
   save: function (props) {
@@ -141,7 +174,7 @@ wp.blocks.registerBlockType('plugin/card-block', {
 });
 wp.blocks.registerBlockType('plugin/background-card-block', {
   title: "Background Card",
-  icon: "smiley",
+  icon: "admin-page",
   category: "common",
   attributes: {
     Background: {

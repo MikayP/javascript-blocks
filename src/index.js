@@ -1,10 +1,41 @@
-wp.blocks.registerBlockType('plugin/card-block',{
-    title:"Test Title",
-    icon: "smiley",
+wp.blocks.registerBlockType('plugin/block-close-box',{
+    title:"Close Box",
+    icon: "undo",
+    category: "common",
+   
+    edit: function(props){
+        // seen in admin
+        // type of html elements you want to create
+        // 2nd rule to describe element. such as adding a class or inline style, or null
+        // 3rd is text you want in there
+        // value needed to save on reload of admin
+        // on change needed to see change of values in guttenberg
+    
+
+        return (
+            <div>
+                <strong>Close The Box</strong>
+            </div>
+        )
+    },
+
+    save: function(props){
+        // seen live
+            // 3rd is text you want in there
+            return (
+               null
+            )
+    }
+})
+
+wp.blocks.registerBlockType('plugin/top-card-bg',{
+    title:"Top Card Background",
+    icon: "format-gallery",
     category: "common",
     attributes: {
-        skyColor: { type: "string"},
-        grassColor: {type: "string"}
+        top_card_bg: { type: "string"},
+        animation: {type: "string"},
+        className: {type: "string"}
     },
     edit: function(props){
         // seen in admin
@@ -13,16 +44,20 @@ wp.blocks.registerBlockType('plugin/card-block',{
         // 3rd is text you want in there
         // value needed to save on reload of admin
         // on change needed to see change of values in guttenberg
-        function updateBackground(event){ 
-            props.setAttributes({skyColor: event.target.value})
-        }    
-        function updateGrassColorr(event){
-            props.setAttributes({grassColor: event.target.value})
+        function top_card_bg(event){
+            props.setAttributes({top_card_bg: event.target.value})
+        }   
+        function animation(event){
+            props.setAttributes({animation: event.target.value})
+        }
+        function className(event){
+            props.setAttributes({className: event.target.value})
         }
         return (
             <div>
-                <input type="text" placeholder="skky color" value={props.attributes.Background} onChange={updateSkyColorr} />
-                <input type="text" placeholder="graass color" value={props.attributes.GrassColorr} onChange={updateGrassColorr} />
+                <input type="text" placeholder="background url" value={props.attributes.top_card_bg} onChange={top_card_bg} />
+                <input type="text" placeholder="Animation" value={props.attributes.animation} onChange={animation} />
+                <input type="text" placeholder="class name (optional)" value={props.attributes.className} onChange={className} />
         </div>
 
         )
@@ -39,7 +74,7 @@ wp.blocks.registerBlockType('plugin/card-block',{
 
 wp.blocks.registerBlockType('plugin/background-card-block',{
     title:"Background Card",
-    icon: "smiley",
+    icon: "admin-page",
     category: "common",
     attributes: {
         Background: { type: "string"},

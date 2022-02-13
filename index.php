@@ -13,23 +13,39 @@ class payAttention{
         add_action('init', array($this, 'loadBlocks'));
     }
     function loadBlocks(){
-        wp_register_script('card_block_block', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
-        register_block_type('plugin/card-block',array(
-            'editor_script' => 'card_block_block',
-            'render_callback' => array($this, 'card_block')
+        // close the box
+        wp_register_script('block-close-box', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
+        register_block_type('plugin/block-close-box',array(
+            'editor_script' => 'block-close-box',
+            'render_callback' => array($this, 'block_close_box')
         ));
 
+        // top div background image
+        wp_register_script('top-card-bg', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
+        register_block_type('plugin/top-card-bg',array(
+            'editor_script' => 'top-card-bg',
+            'render_callback' => array($this, 'top_card_bg')
+        ));
+
+        // full bg image card
         wp_register_script('background-card-block', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
         register_block_type('plugin/background-card-block',array(
             'editor_script' => 'background-card-block',
             'render_callback' => array($this, 'card_bg_block')
         ));
     }
-    function card_block($variable){
+
+    function top_card_bg($variable){
         ob_start(); ?>
-<p>TOday the sky is <?php if($variable['skyColor']) {echo  $variable['skyColor'];} else {echo 'nothing';} ?> and the
-    grass is <?php echo $variable['grassColor'] ?></p>
-<?php return ob_get_clean(); 
+        <div class="h-100 border-radius_global col-12 background_layer top_card_bg <?php echo $variable['className'] ?>" style="background-image:url('<?php echo $variable['top_card_bg'] ?>');" data-aos="<?php echo $variable['animation'] ?>" data-aos-duration="500">
+        <div class="background_layer_dark_global background_layer_dark_global_z_index_1"></div>
+        <?php return ob_get_clean(); 
+    }
+
+    function block_close_box( ){
+        ob_start(); ?>
+        </div>
+        <?php return ob_get_clean(); 
     }
 
     function card_bg_block($variable){
