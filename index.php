@@ -14,25 +14,28 @@ class payAttention{
     }
     function loadBlocks(){
         // close the box
-        wp_register_script('block-close-box', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
+        wp_register_script(
+            'all-mikes-blocks', 
+            plugins_url('build/index.js', __FILE__ ) ,
+             array('wp-blocks', 'wp-element', 'wp-data')
+            );
         register_block_type('plugin/block-close-box',array(
             'editor_script' => 'block-close-box',
             'render_callback' => array($this, 'block_close_box')
         ));
 
         // top div background image
-        wp_register_script('top-card-bg', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
         register_block_type('plugin/top-card-bg',array(
             'editor_script' => 'top-card-bg',
             'render_callback' => array($this, 'top_card_bg')
         ));
 
         // full bg image card
-        wp_register_script('background-card-block', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element'));
         register_block_type('plugin/background-card-block',array(
             'editor_script' => 'background-card-block',
             'render_callback' => array($this, 'card_bg_block')
         ));
+
     }
 
     function top_card_bg($variable){
