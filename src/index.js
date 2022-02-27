@@ -70,6 +70,7 @@ wp.blocks.registerBlockType('plugin/top-card-bg',{
                null
             )
     }
+    
 })
 
 wp.blocks.registerBlockType('plugin/background-card-block',{
@@ -125,7 +126,7 @@ wp.blocks.registerBlockType('plugin/background-card-block',{
 
         )
     },
-
+ 
     save: function(props){
         // seen live
             // 3rd is text you want in there
